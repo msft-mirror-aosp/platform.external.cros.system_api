@@ -116,5 +116,76 @@
         '<(SHARED_INTERMEDIATE_DIR)/include/authpolicy/proto_bindings/active_directory_info.pb.cc',
       ]
     },
+    {
+      'target_name': 'system_api-biod-protos-gen',
+      'type': 'none',
+      'variables': {
+        'proto_in_dir': 'dbus/biod',
+        'proto_out_dir': 'include/biod/proto_bindings',
+      },
+      'sources': [
+        '<(proto_in_dir)/constants.proto',
+        '<(proto_in_dir)/messages.proto',
+      ],
+      'includes': ['../../platform2/common-mk/protoc.gypi'],
+    },
+    {
+      'target_name': 'system_api-biod-protos',
+      'type': 'static_library',
+      'standalone_static_library': 1,
+      'dependencies': [
+        'system_api-biod-protos-gen',
+      ],
+      'sources': [
+        '<(SHARED_INTERMEDIATE_DIR)/include/biod/proto_bindings/constants.pb.cc',
+        '<(SHARED_INTERMEDIATE_DIR)/include/biod/proto_bindings/messages.pb.cc',
+      ]
+    },
+    {
+      'target_name': 'system_api-login_manager-protos-gen',
+      'type': 'none',
+      'variables': {
+        'proto_in_dir': 'dbus/login_manager',
+        'proto_out_dir': 'include/login_manager/proto_bindings',
+      },
+      'sources': [
+        '<(proto_in_dir)/arc.proto',
+      ],
+      'includes': ['../../platform2/common-mk/protoc.gypi'],
+    },
+    {
+      'target_name': 'system_api-login_manager-protos',
+      'type': 'static_library',
+      'standalone_static_library': 1,
+      'dependencies': [
+        'system_api-login_manager-protos-gen',
+      ],
+      'sources': [
+        '<(SHARED_INTERMEDIATE_DIR)/include/login_manager/proto_bindings/arc.pb.cc',
+      ]
+    },
+    {
+      'target_name': 'system_api-chaps-protos-gen',
+      'type': 'none',
+      'variables': {
+        'proto_in_dir': 'dbus/chaps',
+        'proto_out_dir': 'include/chaps/proto_bindings',
+      },
+      'sources': [
+        '<(proto_in_dir)/ck_structs.proto',
+      ],
+      'includes': ['../../platform2/common-mk/protoc.gypi'],
+    },
+    {
+      'target_name': 'system_api-chaps-protos',
+      'type': 'static_library',
+      'standalone_static_library': 1,
+      'dependencies': [
+        'system_api-chaps-protos-gen',
+      ],
+      'sources': [
+        '<(SHARED_INTERMEDIATE_DIR)/include/chaps/proto_bindings/ck_structs.pb.cc',
+      ]
+    },
   ]
 }
