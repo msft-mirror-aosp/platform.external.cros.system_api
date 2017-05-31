@@ -233,6 +233,7 @@ const char kBluetoothPluginInterface[] = "org.chromium.BluetoothDevice";
 
 // Bluetooth Device plugin methods.
 const char kGetConnInfo[] = "GetConnInfo";
+const char kSetLEConnectionParameters[] = "SetLEConnectionParameters";
 }  // namespace bluetooth_plugin_device
 
 namespace bluetooth_adapter {
@@ -663,6 +664,7 @@ const char kBluetoothAdvertisingManagerInterface[] =
 const char kRegisterAdvertisement[] = "RegisterAdvertisement";
 const char kUnregisterAdvertisement[] = "UnregisterAdvertisement";
 const char kSetAdvertisingIntervals[] = "SetAdvertisingIntervals";
+const char kResetAdvertising[] = "ResetAdvertising";
 
 // Bluetooth LE Advertising Manager errors.
 const char kErrorAlreadyExists[] = "org.bluez.Error.AlreadyExists";
