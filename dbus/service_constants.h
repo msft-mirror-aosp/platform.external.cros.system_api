@@ -11,9 +11,11 @@
 // Chromium OS and Chromium environment.
 #include "apmanager/dbus-constants.h"
 #include "authpolicy/dbus-constants.h"
+#include "biod/dbus-constants.h"
 #include "cros-disks/dbus-constants.h"
 #include "cryptohome/dbus-constants.h"
 #include "debugd/dbus-constants.h"
+#include "hammerd/dbus-constants.h"
 #include "login_manager/dbus-constants.h"
 #include "lorgnette/dbus-constants.h"
 #include "permission_broker/dbus-constants.h"
@@ -61,9 +63,12 @@ const char kImageLoaderServiceName[] = "org.chromium.ImageLoader";
 const char kImageLoaderServicePath[] = "/org/chromium/ImageLoader";
 // Methods
 const char kRegisterComponent[] = "RegisterComponent";
+const char kLoadComponent[] = "LoadComponent";
 const char kGetComponentVersion[] = "GetComponentVersion";
+const char kRemoveComponent[] = "RemoveComponent";
 // Constants
 const char kBadResult[] = "";
+const char kTerminaComponentName[] = "cros-termina";
 }  // namespace imageloader
 
 namespace speech_synthesis {
@@ -90,11 +95,13 @@ const char kLibCrosServiceName[] = "org.chromium.LibCrosService";
 const char kLibCrosServicePath[] = "/org/chromium/LibCrosService";
 const char kLibCrosServiceInterface[] = "org.chromium.LibCrosServiceInterface";
 // Methods
-const char kResolveNetworkProxy[] = "ResolveNetworkProxy";
+// TODO(teravest): Remove this once CheckLiveness is removed from
+// LibCrosService.
 const char kCheckLiveness[] = "CheckLiveness";
 const char kGetKioskAppRequiredPlatforVersion[] =
     "GetKioskAppRequiredPlatformVersion";
 const char kLockScreen[] = "LockScreen";
+// TODO(lannm): Remove Display methods once removed from LibCrosService.
 const char kSetDisplayPower[] = "SetDisplayPower";
 const char kSetDisplaySoftwareDimming[] = "SetDisplaySoftwareDimming";
 const char kTakeDisplayOwnership[] = "TakeDisplayOwnership";
@@ -106,6 +113,57 @@ enum DisplayPowerState {
   DISPLAY_POWER_INTERNAL_OFF_EXTERNAL_ON = 2,
   DISPLAY_POWER_INTERNAL_ON_EXTERNAL_OFF = 3,
 };
+
+const char kNetworkProxyServiceName[] = "org.chromium.NetworkProxyService";
+const char kNetworkProxyServicePath[] = "/org/chromium/NetworkProxyService";
+const char kNetworkProxyServiceInterface[] =
+    "org.chromium.NetworkProxyServiceInterface";
+const char kNetworkProxyServiceResolveProxyMethod[] = "ResolveProxy";
+
+const char kLivenessServiceName[] = "org.chromium.LivenessService";
+const char kLivenessServicePath[] = "/org/chromium/LivenessService";
+const char kLivenessServiceInterface[] =
+    "org.chromium.LivenessServiceInterface";
+const char kLivenessServiceCheckLivenessMethod[] = "CheckLiveness";
+
+const char kComponentUpdaterServiceName[] =
+    "org.chromium.ComponentUpdaterService";
+const char kComponentUpdaterServicePath[] =
+    "/org/chromium/ComponentUpdaterService";
+const char kComponentUpdaterServiceInterface[] =
+    "org.chromium.ComponentUpdaterService";
+const char kComponentUpdaterServiceLoadComponentMethod[] = "LoadComponent";
+const char kComponentUpdaterServiceRemoveComponentMethod[] = "RemoveComponent";
+
+const char kKioskAppServiceName[] = "org.chromium.KioskAppService";
+const char kKioskAppServicePath[] = "/org/chromium/KioskAppService";
+const char kKioskAppServiceInterface[] =
+    "org.chromium.KioskAppServiceInterface";
+// Methods
+const char kKioskAppServiceGetRequiredPlatformVersionMethod[] =
+    "GetRequiredPlatformVersion";
+
+const char kDisplayServiceName[] = "org.chromium.DisplayService";
+const char kDisplayServicePath[] = "/org/chromium/DisplayService";
+const char kDisplayServiceInterface[] = "org.chromium.DisplayServiceInterface";
+// Methods
+const char kDisplayServiceSetPowerMethod[] = "SetPower";
+const char kDisplayServiceSetSoftwareDimmingMethod[] = "SetSoftwareDimming";
+const char kDisplayServiceTakeOwnershipMethod[] = "TakeOwnership";
+const char kDisplayServiceReleaseOwnershipMethod[] = "ReleaseOwnership";
+
+constexpr char kVirtualFileRequestServiceName[] =
+    "org.chromium.VirtualFileRequestService";
+constexpr char kVirtualFileRequestServicePath[] =
+    "/org/chromium/VirtualFileRequestService";
+constexpr char kVirtualFileRequestServiceInterface[] =
+    "org.chromium.VirtualFileRequestService";
+// Methods
+constexpr char kVirtualFileRequestServiceHandleReadRequestMethod[] =
+    "HandleReadRequest";
+constexpr char kVirtualFileRequestServiceHandleIdReleasedMethod[] =
+    "HandleIdReleased";
+
 }  // namespace chromeos
 
 namespace cromo {
@@ -126,6 +184,18 @@ const char kModemGsmNetworkInterface[] =
 const char kModemGobiInterface[] = "org.chromium.ModemManager.Modem.Gobi";
 }  // namespace cromo
 
+namespace media_perception {
+
+const char kMediaPerceptionServiceName[] = "org.chromium.MediaPerception";
+const char kMediaPerceptionServicePath[] = "/org/chromium/MediaPerception";
+const char kMediaPerceptionInterface[] = "org.chromium.MediaPerception";
+
+const char kStateFunction[] = "State";
+const char kGetDiagnosticsFunction[] = "GetDiagnostics";
+const char kDetectionSignal[] = "MediaPerceptionDetection";
+
+}  // namespace media_perception
+
 namespace modemmanager {
 // ModemManager D-Bus service identifiers
 const char kModemManagerSMSInterface[] =
@@ -144,6 +214,8 @@ const char kSMSReceivedSignal[] = "SmsReceived";
 //   /usr/include/ModemManager/ModemManager-names.h
 const char kModemManager1ServiceName[] = "org.freedesktop.ModemManager1";
 const char kModemManager1ServicePath[] = "/org/freedesktop/ModemManager1";
+const char kModemManager1ModemInterface[] =
+    "org.freedesktop.ModemManager1.Modem";
 const char kModemManager1MessagingInterface[] =
     "org.freedesktop.ModemManager1.Modem.Messaging";
 const char kModemManager1SmsInterface[] =
@@ -196,6 +268,13 @@ const char kBluetoothPluginInterface[] = "org.chromium.BluetoothDevice";
 
 // Bluetooth Device plugin methods.
 const char kGetConnInfo[] = "GetConnInfo";
+const char kSetLEConnectionParameters[] = "SetLEConnectionParameters";
+// Valid connection parameters that can be passed to the
+// SetLEConnectionParameters API as dictionary keys.
+const char kLEConnectionParameterMinimumConnectionInterval[] =
+    "MinimumConnectionInterval";
+const char kLEConnectionParameterMaximumConnectionInterval[] =
+    "MaximumConnectionInterval";
 }  // namespace bluetooth_plugin_device
 
 namespace bluetooth_adapter {
@@ -626,6 +705,7 @@ const char kBluetoothAdvertisingManagerInterface[] =
 const char kRegisterAdvertisement[] = "RegisterAdvertisement";
 const char kUnregisterAdvertisement[] = "UnregisterAdvertisement";
 const char kSetAdvertisingIntervals[] = "SetAdvertisingIntervals";
+const char kResetAdvertising[] = "ResetAdvertising";
 
 // Bluetooth LE Advertising Manager errors.
 const char kErrorAlreadyExists[] = "org.bluez.Error.AlreadyExists";
@@ -885,6 +965,7 @@ const char kSetInputGain[] = "SetInputGain";
 const char kSetInputNodeGain[] = "SetInputNodeGain";
 const char kSetInputMute[] = "SetInputMute";
 const char kGetVolumeState[] = "GetVolumeState";
+const char kGetDefaultOutputBufferSize[] = "GetDefaultOutputBufferSize";
 const char kGetNodes[] = "GetNodes";
 const char kSetActiveOutputNode[] = "SetActiveOutputNode";
 const char kSetActiveInputNode[] = "SetActiveInputNode";
@@ -920,6 +1001,7 @@ const char kNodesChanged[] = "NodesChanged";
 const char kActiveOutputNodeChanged[] = "ActiveOutputNodeChanged";
 const char kActiveInputNodeChanged[] = "ActiveInputNodeChanged";
 const char kNumberOfActiveStreamsChanged[] = "NumberOfActiveStreamsChanged";
+const char kHotwordTriggered[] = "HotwordTriggered";
 }  // namespace cras
 
 namespace feedback {
@@ -956,5 +1038,32 @@ const char kGenerateEcP256KeyPairMethod[] = "GenerateEcP256KeyPair";
 const char kCreateSecureMessageMethod[] = "CreateSecureMessage";
 const char kUnwrapSecureMessageMethod[] = "UnwrapSecureMessage";
 }  // namespace easy_unlock
+
+namespace arc_oemcrypto {
+const char kArcOemCryptoServiceInterface[] = "org.chromium.ArcOemCrypto";
+const char kArcOemCryptoServiceName[] = "org.chromium.ArcOemCrypto";
+const char kArcOemCryptoServicePath[] = "/org/chromium/ArcOemCrypto";
+// Methods
+const char kBootstrapMojoConnection[] = "BootstrapMojoConnection";
+}  // namespace arc_oemcrypto
+
+namespace midis {
+constexpr char kMidisServiceName[] = "org.chromium.Midis";
+constexpr char kMidisServicePath[] = "/org/chromium/Midis";
+constexpr char kMidisInterfaceName[] = "org.chromium.Midis";
+// Methods
+constexpr char kBootstrapMojoConnectionMethod[] = "BootstrapMojoConnection";
+}  // namespace midis
+
+namespace virtual_file_provider {
+constexpr char kVirtualFileProviderServiceName[] =
+    "org.chromium.VirtualFileProvider";
+constexpr char kVirtualFileProviderServicePath[] =
+    "/org/chromium/VirtualFileProvider";
+constexpr char kVirtualFileProviderInterface[] =
+    "org.chromium.VirtualFileProvider";
+// Methods
+constexpr char kOpenFileMethod[] = "OpenFile";
+}  // namespace virtual_file_provider
 
 #endif  // SYSTEM_API_DBUS_SERVICE_CONSTANTS_H_

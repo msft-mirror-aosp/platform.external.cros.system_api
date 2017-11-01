@@ -21,6 +21,7 @@ const char kRequestRestartMethod[] = "RequestRestart";
 const char kRequestShutdownMethod[] = "RequestShutdown";
 const char kRequestSuspendMethod[] = "RequestSuspend";
 const char kGetPowerSupplyPropertiesMethod[] = "GetPowerSupplyProperties";
+const char kGetSwitchStatesMethod[] = "GetSwitchStates";
 const char kHandleUserActivityMethod[] = "HandleUserActivity";
 const char kHandleVideoActivityMethod[] = "HandleVideoActivity";
 const char kSetIsProjectingMethod[] = "SetIsProjecting";
@@ -36,6 +37,7 @@ const char kUnregisterDarkSuspendDelayMethod[] = "UnregisterDarkSuspendDelay";
 const char kHandleDarkSuspendReadinessMethod[] = "HandleDarkSuspendReadiness";
 const char kHandlePowerButtonAcknowledgmentMethod[] =
     "HandlePowerButtonAcknowledgment";
+const char kIgnoreNextPowerButtonPressMethod[] = "IgnoreNextPowerButtonPress";
 const char kRecordDarkResumeWakeReasonMethod[] = "RecordDarkResumeWakeReason";
 // Signals emitted by powerd.
 const char kBrightnessChangedSignal[] = "BrightnessChanged";
@@ -48,6 +50,7 @@ const char kSuspendDoneSignal[] = "SuspendDone";
 const char kInputEventSignal[] = "InputEvent";
 const char kIdleActionImminentSignal[] = "IdleActionImminent";
 const char kIdleActionDeferredSignal[] = "IdleActionDeferred";
+const char kScreenIdleStateChangedSignal[] = "ScreenIdleStateChanged";
 // Values
 const int kBrightnessTransitionGradual = 1;
 const int kBrightnessTransitionInstant = 2;
@@ -60,8 +63,18 @@ enum UserActivityType {
   USER_ACTIVITY_VOLUME_MUTE_KEY_PRESS = 5,
 };
 enum RequestRestartReason {
+  // An explicit user request (e.g. clicking a button).
   REQUEST_RESTART_FOR_USER = 0,
+  // A system update.
   REQUEST_RESTART_FOR_UPDATE = 1,
+  // Some other reason.
+  REQUEST_RESTART_OTHER = 2,
+};
+enum RequestShutdownReason {
+  // An explicit user request (e.g. clicking a button).
+  REQUEST_SHUTDOWN_FOR_USER = 0,
+  // Some other reason.
+  REQUEST_SHUTDOWN_OTHER = 1,
 };
 }  // namespace power_manager
 
