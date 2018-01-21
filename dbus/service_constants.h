@@ -23,6 +23,7 @@
 #include "shill/dbus-constants.h"
 #include "smbprovider/dbus-constants.h"
 #include "update_engine/dbus-constants.h"
+#include "vm_concierge/dbus-constants.h"
 
 namespace dbus {
 const char kDBusInterface[] = "org.freedesktop.DBus";
@@ -166,6 +167,14 @@ constexpr char kVirtualFileRequestServiceHandleReadRequestMethod[] =
     "HandleReadRequest";
 constexpr char kVirtualFileRequestServiceHandleIdReleasedMethod[] =
     "HandleIdReleased";
+
+const char kChromeFeaturesServiceName[] = "org.chromium.ChromeFeaturesService";
+const char kChromeFeaturesServicePath[] = "/org/chromium/ChromeFeaturesService";
+const char kChromeFeaturesServiceInterface[] =
+    "org.chromium.ChromeFeaturesServiceInterface";
+// Methods
+const char kChromeFeaturesServiceIsCrostiniEnabledMethod[] =
+    "IsCrostiniEnabled";
 
 }  // namespace chromeos
 
@@ -1068,5 +1077,19 @@ constexpr char kVirtualFileProviderInterface[] =
 // Methods
 constexpr char kOpenFileMethod[] = "OpenFile";
 }  // namespace virtual_file_provider
+
+namespace arc {
+namespace obb_mounter {
+// D-Bus service constants.
+constexpr char kArcObbMounterInterface[] =
+    "org.chromium.ArcObbMounterInterface";
+constexpr char kArcObbMounterServicePath[] = "/org/chromium/ArcObbMounter";
+constexpr char kArcObbMounterServiceName[] = "org.chromium.ArcObbMounter";
+
+// Method names.
+constexpr char kMountObbMethod[] = "MountObb";
+constexpr char kUnmountObbMethod[] = "UnmountObb";
+}  // namespace obb_mounter
+}  // namespace arc
 
 #endif  // SYSTEM_API_DBUS_SERVICE_CONSTANTS_H_
