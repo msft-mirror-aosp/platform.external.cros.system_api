@@ -25,6 +25,7 @@
 #include "shill/dbus-constants.h"
 #include "smbprovider/dbus-constants.h"
 #include "update_engine/dbus-constants.h"
+#include "vm_applications/dbus-constants.h"
 #include "vm_concierge/dbus-constants.h"
 
 namespace dbus {
@@ -159,6 +160,12 @@ const char kDisplayServiceSetPowerMethod[] = "SetPower";
 const char kDisplayServiceSetSoftwareDimmingMethod[] = "SetSoftwareDimming";
 const char kDisplayServiceTakeOwnershipMethod[] = "TakeOwnership";
 const char kDisplayServiceReleaseOwnershipMethod[] = "ReleaseOwnership";
+
+const char kScreenLockServiceName[] = "org.chromium.ScreenLockService";
+const char kScreenLockServicePath[] = "/org/chromium/ScreenLockService";
+const char kScreenLockServiceInterface[] =
+    "org.chromium.ScreenLockServiceInterface";
+const char kScreenLockServiceShowLockScreenMethod[] = "ShowLockScreen";
 
 constexpr char kVirtualFileRequestServiceName[] =
     "org.chromium.VirtualFileRequestService";
