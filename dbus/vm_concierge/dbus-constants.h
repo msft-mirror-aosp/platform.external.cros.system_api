@@ -21,8 +21,10 @@ const char kDestroyDiskImageMethod[] = "DestroyDiskImage";
 const char kListVmDisksMethod[] = "ListVmDisks";
 const char kStartContainerMethod[] = "StartContainer";
 const char kLaunchContainerApplicationMethod[] = "LaunchContainerApplication";
+const char kGetContainerAppIconMethod[] = "GetContainerAppIcon";
 
 const char kContainerStartedSignal[] = "ContainerStarted";
+const char kContainerStartupFailedSignal[] = "ContainerStartupFailed";
 
 }  // namespace concierge
 }  // namespace vm_tools
