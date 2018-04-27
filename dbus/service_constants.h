@@ -568,8 +568,7 @@ const char kErrorInvalidValueLength[] = "org.bluez.Error.InvalidValueLength";
 const char kErrorNotAuthorized[] = "org.bluez.Error.NotAuthorized";
 const char kErrorNotPaired[] = "org.bluez.Error.NotPaired";
 const char kErrorNotSupported[] = "org.bluez.Error.NotSupported";
-const char kErrorReadNotPermitted[] = "org.bluez.Error.ReadNotPermitted";
-const char kErrorWriteNotPermitted[] = "org.bluez.Error.WriteNotPermitted";
+const char kErrorNotPermitted[] = "org.bluez.Error.NotPermitted";
 }  // namespace bluetooth_gatt_service
 
 namespace bluetooth_input {
