@@ -430,9 +430,9 @@ const char kRSSIProperty[] = "RSSI";
 const char kTxPowerProperty[] = "TxPower";
 const char kManufacturerDataProperty[] = "ManufacturerData";
 const char kServiceDataProperty[] = "ServiceData";
-const char kGattServicesProperty[] = "GattServices";         // DEPRECATED
 const char kServicesResolvedProperty[] = "ServicesResolved";
 const char kAdvertisingDataFlagsProperty[] = "AdvertisingFlags";
+const char kMTUProperty[] = "MTU";
 
 // Bluetooth Device errors.
 const char kErrorNotReady[] = "org.bluez.Error.NotReady";
@@ -656,6 +656,12 @@ namespace bluetooth_object_manager {
 const char kBluetoothObjectManagerServiceName[] = "org.chromium.Bluetooth";
 const char kBluetoothObjectManagerServicePath[] = "/";
 }  // namespace bluetooth_object_manager
+
+namespace newblue_object_manager {
+// NewBlue daemon Object Manager service identifiers.
+const char kNewblueObjectManagerServiceName[] = "org.chromium.Newblue";
+const char kNewblueObjectManagerServicePath[] = "/";
+}  // namespace newblue_object_manager
 
 namespace bluetooth_profile_manager {
 // Bluetooth Profile Manager service identifiers.
