@@ -17,6 +17,20 @@ const char kMountMethod[] = "Mount";
 const char kUnmountMethod[] = "Unmount";
 const char kReadDirectoryMethod[] = "ReadDirectory";
 const char kGetMetadataEntryMethod[] = "GetMetadataEntry";
+const char kOpenFileMethod[] = "OpenFile";
+const char kCloseFileMethod[] = "CloseFile";
+const char kReadFileMethod[] = "ReadFile";
+const char kDeleteEntryMethod[] = "DeleteEntry";
+const char kCreateFileMethod[] = "CreateFile";
+const char kTruncateMethod[] = "Truncate";
+const char kWriteFileMethod[] = "WriteFile";
+const char kCreateDirectoryMethod[] = "CreateDirectory";
+const char kMoveEntryMethod[] = "MoveEntry";
+const char kCopyEntryMethod[] = "CopyEntry";
+const char kGetDeleteListMethod[] = "GetDeleteList";
+const char kGetSharesMethod[] = "GetShares";
+const char kRemountMethod[] = "Remount";
+const char kSetupKerberosMethod[] = "SetupKerberos";
 
 }  // namespace smbprovider
 

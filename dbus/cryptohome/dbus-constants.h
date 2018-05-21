@@ -6,12 +6,14 @@
 #define SYSTEM_API_DBUS_CRYPTOHOME_DBUS_CONSTANTS_H_
 
 namespace cryptohome {
+
+// Interface exposed by the cryptohome daemon.
+
 const char kCryptohomeInterface[] = "org.chromium.CryptohomeInterface";
 const char kCryptohomeServicePath[] = "/org/chromium/Cryptohome";
 const char kCryptohomeServiceName[] = "org.chromium.Cryptohome";
-// Methods
-const char kCryptohomeAsyncAddKey[] = "AsyncAddKey";
-const char kCryptohomeCheckKey[] = "CheckKey";
+
+// Methods of the |kCryptohomeInterface| interface:
 const char kCryptohomeMigrateKey[] = "MigrateKey";
 const char kCryptohomeRemove[] = "Remove";
 const char kCryptohomeGetSystemSalt[] = "GetSystemSalt";
@@ -19,7 +21,6 @@ const char kCryptohomeGetSanitizedUsername[] = "GetSanitizedUsername";
 const char kCryptohomeIsMounted[] = "IsMounted";
 const char kCryptohomeMount[] = "Mount";
 const char kCryptohomeMountGuest[] = "MountGuest";
-const char kCryptohomeMountPublic[] = "MountPublic";
 const char kCryptohomeUnmount[] = "Unmount";
 const char kCryptohomeTpmIsReady[] = "TpmIsReady";
 const char kCryptohomeTpmIsEnabled[] = "TpmIsEnabled";
@@ -34,11 +35,9 @@ const char kCryptohomePkcs11GetTpmTokenInfoForUser[] =
 const char kCryptohomePkcs11IsTpmTokenReady[] = "Pkcs11IsTpmTokenReady";
 const char kCryptohomePkcs11IsTpmTokenReadyForUser[] =
     "Pkcs11IsTpmTokenReadyForUser";
-const char kCryptohomeAsyncCheckKey[] = "AsyncCheckKey";
 const char kCryptohomeAsyncMigrateKey[] = "AsyncMigrateKey";
 const char kCryptohomeAsyncMount[] = "AsyncMount";
 const char kCryptohomeAsyncMountGuest[] = "AsyncMountGuest";
-const char kCryptohomeAsyncMountPublic[] = "AsyncMountPublic";
 const char kCryptohomeAsyncRemove[] = "AsyncRemove";
 const char kCryptohomeGetStatusString[] = "GetStatusString";
 const char kCryptohomeRemoveTrackedSubdirectories[] =
@@ -62,10 +61,6 @@ const char kCryptohomeInstallAttributesIsInvalid[] =
     "InstallAttributesIsInvalid";
 const char kCryptohomeInstallAttributesIsFirstInstall[] =
     "InstallAttributesIsFirstInstall";
-const char kCryptohomeStoreEnrollmentState[] =
-    "StoreEnrollmentState";
-const char kCryptohomeLoadEnrollmentState[] =
-    "LoadEnrollmentState";
 const char kCryptohomeTpmIsAttestationPrepared[] = "TpmIsAttestationPrepared";
 const char kCryptohomeTpmIsAttestationEnrolled[] = "TpmIsAttestationEnrolled";
 const char kCryptohomeTpmAttestationCreateEnrollRequest[] =
@@ -108,6 +103,8 @@ const char kCryptohomeTpmAttestationSetKeyPayload[] =
     "TpmAttestationSetKeyPayload";
 const char kCryptohomeTpmAttestationDeleteKeys[] =
     "TpmAttestationDeleteKeys";
+const char kCryptohomeTpmAttestationGetEnrollmentId[] =
+    "TpmAttestationGetEnrollmentId";
 // TODO(isandrk): Deprecated, remove on (or before) 2017/09/21 - after the
 // Chromium side has been changed to use the new TpmGetVersionStructured.
 const char kCryptohomeTpmGetVersion[] = "TpmGetVersion";
@@ -137,16 +134,17 @@ const char kCryptohomeSetFirmwareManagementParameters[] =
 const char kCryptohomeRemoveFirmwareManagementParameters[] =
     "RemoveFirmwareManagementParameters";
 const char kCryptohomeMigrateToDircrypto[] = "MigrateToDircrypto";
-const char kCryptohomeMigrateToDircryptoEx[] = "MigrateToDircryptoEx";
 const char kCryptohomeNeedsDircryptoMigration[] = "NeedsDircryptoMigration";
+const char kCryptohomeGetSupportedKeyPolicies[] = "GetSupportedKeyPolicies";
 
-// Signals
+// Signals of the |kCryptohomeInterface| interface:
 const char kSignalAsyncCallStatus[] = "AsyncCallStatus";
 const char kSignalAsyncCallStatusWithData[] = "AsyncCallStatusWithData";
 const char kSignalTpmInitStatus[] = "TpmInitStatus";
 const char kSignalCleanupUsersRemoved[] = "CleanupUsersRemoved";
 const char kSignalLowDiskSpace[] = "LowDiskSpace";
 const char kSignalDircryptoMigrationProgress[] = "DircryptoMigrationProgress";
+
 // Error code
 enum MountError {
   MOUNT_ERROR_NONE = 0,
@@ -175,6 +173,15 @@ enum DircryptoMigrationStatus {
   DIRCRYPTO_MIGRATION_INITIALIZING = 1,
   DIRCRYPTO_MIGRATION_IN_PROGRESS = 2,
 };
+
+// Interface for key delegate service to be used by the cryptohome daemon.
+
+const char kCryptohomeKeyDelegateInterface[] =
+    "org.chromium.CryptohomeKeyDelegateInterface";
+
+// Methods of the |kCryptohomeKeyDelegateInterface| interface:
+const char kCryptohomeKeyDelegateChallengeKey[] = "ChallengeKey";
+
 }  // namespace cryptohome
 
 #endif  // SYSTEM_API_DBUS_CRYPTOHOME_DBUS_CONSTANTS_H_

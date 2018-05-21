@@ -39,8 +39,12 @@ const char kHandlePowerButtonAcknowledgmentMethod[] =
     "HandlePowerButtonAcknowledgment";
 const char kIgnoreNextPowerButtonPressMethod[] = "IgnoreNextPowerButtonPress";
 const char kRecordDarkResumeWakeReasonMethod[] = "RecordDarkResumeWakeReason";
+const char kGetInactivityDelaysMethod[] = "GetInactivityDelays";
+const char kCreateArcTimersMethod[] = "CreateArcTimers";
+const char kStartArcTimerMethod[] = "StartArcTimer";
+const char kDeleteArcTimersMethod[] = "DeleteArcTimers";
 // Signals emitted by powerd.
-const char kBrightnessChangedSignal[] = "BrightnessChanged";
+const char kScreenBrightnessChangedSignal[] = "ScreenBrightnessChanged";
 const char kKeyboardBrightnessChangedSignal[] = "KeyboardBrightnessChanged";
 const char kPeripheralBatteryStatusSignal[] = "PeripheralBatteryStatus";
 const char kPowerSupplyPollSignal[] = "PowerSupplyPoll";
@@ -51,6 +55,7 @@ const char kInputEventSignal[] = "InputEvent";
 const char kIdleActionImminentSignal[] = "IdleActionImminent";
 const char kIdleActionDeferredSignal[] = "IdleActionDeferred";
 const char kScreenIdleStateChangedSignal[] = "ScreenIdleStateChanged";
+const char kInactivityDelaysChangedSignal[] = "InactivityDelaysChanged";
 // Values
 const int kBrightnessTransitionGradual = 1;
 const int kBrightnessTransitionInstant = 2;
