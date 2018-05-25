@@ -7,7 +7,7 @@ option optimize_for = LITE_RUNTIME;
 
 // This file defines messages used for starting, stopping, and managing VMs.
 package vm_tools.concierge;
-option go_package = "vm_concierge";
+option go_package = "vm_concierge_proto";
 
 // Specification of the key components of a VM.
 message VirtualMachineSpec {
@@ -90,6 +90,9 @@ message StartVmRequest {
   // file descriptor will be used for storage.
   // Ignored unless |start_termina| is true.
   bool use_fd_for_storage = 6;
+
+  // The owner of the vm.
+  string owner_id = 7;
 }
 
 // Information sent back by vm_concierge in response to a StartVm dbus message.
@@ -408,4 +411,24 @@ message ContainerSshKeysResponse {
   // is equivalent to the contents in the ssh-keygen generated file. This will
   // be the same for all VMs/containers.
   string host_private_key = 2;
+}
+
+// Launch vshd request.
+message LaunchVshdRequest {
+  // Name of the VM to target.
+  string vm_name = 1;
+
+  // Name of the container within the VM to target.
+  string container_name = 2;
+
+  // The port for vshd to connect to.
+  uint32 port = 3;
+}
+
+// Response sent back by vm_concierge when it receives a LaunchVshd
+// call.
+message LaunchVshdResponse {
+  bool success = 1;
+
+  string failure_reason = 2;
 }
