@@ -205,6 +205,7 @@ const char kMediaPerceptionInterface[] = "org.chromium.MediaPerception";
 const char kStateFunction[] = "State";
 const char kGetDiagnosticsFunction[] = "GetDiagnostics";
 const char kDetectionSignal[] = "MediaPerceptionDetection";
+const char kBootstrapMojoConnection[] = "BootstrapMojoConnection";
 
 }  // namespace media_perception
 
@@ -1099,6 +1100,8 @@ constexpr char kMlServicePath[] = "/org/chromium/Ml";
 constexpr char kMlInterfaceName[] = "org.chromium.Ml";
 // Methods
 constexpr char kBootstrapMojoConnectionMethod[] = "BootstrapMojoConnection";
+// Token identifying the primordial Mojo pipe passed to BootstrapMojoConnection.
+constexpr char kBootstrapMojoConnectionChannelToken[] = "ml-service-bootstrap";
 }  // namespace ml
 
 namespace virtual_file_provider {
