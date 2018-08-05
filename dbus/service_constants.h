@@ -331,6 +331,7 @@ const char kDiscoverableTimeoutProperty[] = "DiscoverableTimeout";
 const char kDiscoveringProperty[] = "Discovering";
 const char kUUIDsProperty[] = "UUIDs";
 const char kModaliasProperty[] = "Modalias";
+const char kStackSyncQuittingProperty[] = "StackSyncQuitting";
 
 // Bluetooth Adapter errors.
 const char kErrorNotReady[] = "org.bluez.Error.NotReady";
@@ -1111,13 +1112,17 @@ constexpr char kBootstrapMojoConnectionMethod[] = "BootstrapMojoConnection";
 }  // namespace midis
 
 namespace ml {
-constexpr char kMlServiceName[] = "org.chromium.Ml";
-constexpr char kMlServicePath[] = "/org/chromium/Ml";
-constexpr char kMlInterfaceName[] = "org.chromium.Ml";
+constexpr char kMachineLearningServiceName[] = "org.chromium.MachineLearning";
+constexpr char kMachineLearningServicePath[] = "/org/chromium/MachineLearning";
+constexpr char kMachineLearningInterfaceName[] = "org.chromium.MachineLearning";
 // Methods
 constexpr char kBootstrapMojoConnectionMethod[] = "BootstrapMojoConnection";
 // Token identifying the primordial Mojo pipe passed to BootstrapMojoConnection.
 constexpr char kBootstrapMojoConnectionChannelToken[] = "ml-service-bootstrap";
+// Deprecated, use longer names above:
+constexpr char kMlServiceName[] = "org.chromium.MachineLearning";
+constexpr char kMlServicePath[] = "/org/chromium/MachineLearning";
+constexpr char kMlInterfaceName[] = "org.chromium.MachineLearning";
 }  // namespace ml
 
 namespace virtual_file_provider {
