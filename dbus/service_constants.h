@@ -21,6 +21,7 @@
 #include "hammerd/dbus-constants.h"
 #include "login_manager/dbus-constants.h"
 #include "lorgnette/dbus-constants.h"
+#include "oobe_config/dbus-constants.h"
 #include "permission_broker/dbus-constants.h"
 #include "power_manager/dbus-constants.h"
 #include "seneschal/dbus-constants.h"
@@ -125,6 +126,12 @@ const char kLivenessServicePath[] = "/org/chromium/LivenessService";
 const char kLivenessServiceInterface[] =
     "org.chromium.LivenessServiceInterface";
 const char kLivenessServiceCheckLivenessMethod[] = "CheckLiveness";
+
+const char kMetricsEventServiceName[] = "org.chromium.MetricsEventService";
+const char kMetricsEventServicePath[] = "/org/chromium/MetricsEventService";
+const char kMetricsEventServiceInterface[] =
+    "org.chromium.MetricsEventServiceInterface";
+const char kMetricsEventServiceChromeEventSignal[] = "ChromeEvent";
 
 const char kComponentUpdaterServiceName[] =
     "org.chromium.ComponentUpdaterService";
@@ -1179,5 +1186,13 @@ constexpr char kOpenFileMethod[] = "OpenFile";
 }  // namespace appfuse
 
 }  // namespace arc
+
+namespace anomaly_collector {
+const char kAnomalyEventServiceName[] = "org.chromium.AnomalyEventService";
+const char kAnomalyEventServicePath[] = "/org/chromium/AnomalyEventService";
+const char kAnomalyEventServiceInterface[] =
+    "org.chromium.AnomalyEventServiceInterface";
+const char kAnomalyEventSignalName[] = "AnomalyEvent";
+}  // namespace anomaly_collector
 
 #endif  // SYSTEM_API_DBUS_SERVICE_CONSTANTS_H_
